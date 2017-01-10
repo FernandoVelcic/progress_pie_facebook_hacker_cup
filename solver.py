@@ -2,13 +2,15 @@ import numpy as np
  
 def cart2pol(x, y):
     rho = np.sqrt(x**2 + y**2)
-    phi = np.arctan2(y, x)
+    phi = np.arctan2(x, y)
+    if (phi < 0):
+      phi = (2*np.pi + phi)
     return(rho, phi)
    
 def pointInCircle(rad, p, rho, angle):
   if rho > rad:
     return False
-  elif np.pi/2-angle > p*2*np.pi/100: #Rotate
+  elif angle > p/50*np.pi: #Rotate
     return False
   else:
     return True
